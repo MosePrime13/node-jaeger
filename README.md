@@ -7,7 +7,7 @@ This repo is a simple demo of nodejs production ready set up.
 ---
 
 ## Requirements and installation
-* git clone https://xanda.tospay.net/microservices-node/node-template.git
+* git clone git@ssh.dev.azure.com:v3/mosesomondi/node-template/node-template
 * cd node-template
 * touch .env and add a port, node_env and a project name
     * PORT=3010
@@ -66,10 +66,10 @@ sequelize model:generate --name User --attributes name:string,email:string
 
 ## Contributors
 
-- Moses O Omondi <moses@tospay.net>
+- Moses O Omondi <mosesomondi@live.com>
 
 ---
 
 ## Licence & copyright
 
-© Tospay Limited
+© hova.droid.com
