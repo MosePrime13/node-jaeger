@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12-alpine
+    container_name: arordb
+    networks:
+      - app-network
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test_db
+  arortest:
+    build:
+      context: ../
+      dockerfile: Dockerfile-test
+    command: sh -c './wait-for db:5432 -- npm run migrate:test'
+    image: arortest
+    container_name: arortest
+    networks:
+      - app-network
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      PORT: 3030
+      NODE_ENV: test 
+networks:
+  app-network:

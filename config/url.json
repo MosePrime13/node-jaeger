@@ -1,0 +1,21 @@
+{
+    "development": {
+        "host": "",
+        "scheme": ""
+    },
+    "production": {
+        "host": "",
+        "scheme": ""
+    },
+    "sandbox": {
+        "host": "",
+        "scheme": ""
+    },
+    "uat": {
+        "host": "",
+        "scheme": ""
+    },
+    "test":{
+     
+    }
+}

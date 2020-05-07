@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    image: service-dev
+    container_name: service-dev
+    restart: unless-stopped
+    networks:
+      - app-network
+networks:
+  app-network:

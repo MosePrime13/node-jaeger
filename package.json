@@ -1,0 +1,45 @@
+{
+  "name": "node-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --ci --verbose --forceExit --detectOpenHandles",
+    "test:watch": "jest --coverage --watchAll",
+    "build:watch": "onchange 'src/**/*.ts' -- npm run build",
+    "view:coverage": "serve coverage/lcov-report",
+    "clean": "rm -rf coverage src/**/*.js src/**/*.map",
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "migrate": "tsc && node ./migrate.js up",
+    "restart": "node ./migrate.js down && node ./migrate.js up && npm run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "dotenv": "^8.2.0",
+    "fastify": "^2.12.0",
+    "fastify-formbody": "^3.1.0",
+    "fastify-helmet": "^3.0.2",
+    "fastify-plugin": "^1.6.0",
+    "fastify-static": "^2.6.0",
+    "fastify-swagger": "^2.5.0",
+    "jest": "^25.1.0",
+    "pg": "^6.4.2",
+    "sequelize-cockroachdb": "^1.0.3",
+    "sequelize-datatable": "^2.0.0",
+    "umzug": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "@types/sequelize": "^4.28.8",
+    "jest": "^25.1.0",
+    "sequelize": "^4.44.3",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.6.2",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.5"
+  }
+}

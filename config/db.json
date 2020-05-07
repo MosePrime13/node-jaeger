@@ -1,0 +1,46 @@
+{
+    "development": {
+        "username": "test_dev_api",
+        "database": "db_test_dev",
+        "password": null,
+        "dialect": "postgres",
+        "host": "165.22.113.184",
+        "port": 26000,
+        "logging": true
+    },
+    "production": {
+        "username": "test_prod_api",
+        "database": "db_test_prod",
+        "password": null,
+        "dialect": "postgres",
+        "host": "165.22.113.184",
+        "port": 26000,
+        "logging": false
+    },
+    "sandbox": {
+        "username": "test_sandbox_api",
+        "database": "db_test_sandbox",
+        "password": null,
+        "dialect": "postgres",
+        "host": "165.22.113.184",
+        "port": 26000,
+        "logging": false
+    },
+    "uat": {
+        "username": "test_uat_api",
+        "database": "db_test_uat",
+        "password": null,
+        "dialect": "postgres",
+        "host": "165.22.113.184",
+        "port": 26000,
+        "logging": false
+    },
+    "test":{
+        "username": "postgres",
+        "password": "postgres",
+        "database": "test_db",
+        "dialect": "postgres",
+        "host": "",
+        "logging": false
+    }
+}
