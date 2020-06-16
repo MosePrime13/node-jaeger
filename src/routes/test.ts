@@ -1,43 +1,59 @@
 import fastify from 'fastify';
+import { RouteSchema } from './../@types/routeschema';
+import { errorResponseObj, successResponseObj } from '../traits/responses';
+import reqmaker from '../traits/reqmaker';
+
 
 export default function (app: fastify.FastifyInstance, options, done){
 
-    const db = app['cockroachdb'].db;
+    // const db = app['cockroachdb'].db;
 
-    // CREATE FREQUENCY CONFIG
-    app.post('/create', {}, async(req, res) => {
+    const testSchema: RouteSchema = {
+        tags: ['test'],
+        summary: 'Test Get route',
+        body: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {}
+        },
+        params: {
+            type: 'object',
+            properties: {}
+        },
+        response:{
+            400: errorResponseObj,
+            200: successResponseObj({type: 'object', properties: {}})
+        }
+    }
 
-    });
-
-    // FETCH ALL FREQUENCY CONFIGS
     app.get('/fetch', {}, async(req, res) => {
-
+        
+        let data;
+        try{
+            data = await reqmaker({
+                service: 'test',
+                action: 'posts',
+                method: 'GET',
+            });
+        }catch(e){
+            res.code(400).send(e)
+        }
+        
+        res.send(data);
     });
 
-    // FETCH ALL FREQUENCY CONFIGS BY ID
-    app.get('/fetch/:id', {}, async(req, res) => {
-
+    app.post('/create', {}, async(req, res) => {
+        res.send('Test Post')
     });
 
-    // FETCH ALL FREQUENCY CONFIGS DATATABLES
-    app.post('/fetch', {}, async(req, res) => {
-
+    app.put('/update', {}, async(req, res) => {
+        res.send('Test Update')
     });
 
-    // UPDATE FREQUENCY CONFIG BY ID
-    app.put('/update/:id', {}, async(req, res) => {
-
+    app.delete('/delete', {}, async(req, res) => {
+        res.send('Test Delete')
     });
 
-    // SOFT DELETE FREQUENCY CONFIG BY ID
-    app.delete('/delete-s/:id', {}, async(req, res) => {
-
-    });
-
-    // HARD DELETE FREQUENCY CONFIG BY ID
-    app.delete('/delete-h/:id', {}, async(req, res) => {
-
-    });
 
     done();
 }

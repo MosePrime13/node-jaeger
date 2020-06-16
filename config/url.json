@@ -1,21 +1,37 @@
 {
-    "development": {
+    "development_1": {
         "host": "",
-        "scheme": ""
+        "scheme": "",
+        "services": [
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+        ]
     },
     "production": {
         "host": "",
-        "scheme": ""
+        "scheme": "",
+        "services": [
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+        ]
     },
     "sandbox": {
         "host": "",
-        "scheme": ""
+        "scheme": "",
+        "services": [
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+        ]
     },
     "uat": {
         "host": "",
-        "scheme": ""
+        "scheme": "",
+        "services": [
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+        ]
     },
     "test":{
-     
+        "host": "",
+        "scheme": "",
+        "services": [
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+        ]
     }
 }

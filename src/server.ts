@@ -4,12 +4,13 @@ import helmet from 'fastify-helmet';
 import fastifyFormbody from 'fastify-formbody';
 import fastswagger from 'fastify-swagger';
 import fastifyStatic from 'fastify-static';
+import fastifyJaeger from 'fastify-jaeger';
 import path from 'path';
 import { Server, IncomingMessage, ServerResponse } from "http";
 
 dotenv.config({ path: __dirname + '/../.env' });
 
-import dbConnector from './plugins/dbConnector';
+// import dbConnector from './plugins/dbConnector';
 import routes from './routes';
 
 const app: fastify.FastifyInstance<
@@ -24,10 +25,15 @@ const app: fastify.FastifyInstance<
 
 
 app.register(helmet);
-app.register(dbConnector);
+// app.register(dbConnector);
 app.register(fastifyFormbody);
 app.register(fastifyStatic, {
     root: path.join(__dirname, '/../public'),
+});
+app.register(fastifyJaeger, {
+    serviceName: process.env.PROJECT_NAME,
+    agentHost: 'localhost',
+    agentPort: 6831
 });
 
 

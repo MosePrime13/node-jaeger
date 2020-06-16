@@ -1,7 +1,11 @@
 import fastify from 'fastify';
 import { errorResponses } from '../traits/responses';
 
+import testRoutes from './test';
+
 export default function(app: fastify.FastifyInstance) {
+
+    app.register(testRoutes, { prefix: '/test' })
 
     app.setNotFoundHandler((req, res) => {
         res.code(404).send(errorResponses('001', 'Page not found', []));
