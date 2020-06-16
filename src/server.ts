@@ -30,16 +30,20 @@ app.register(fastifyFormbody);
 app.register(fastifyStatic, {
     root: path.join(__dirname, '/../public'),
 });
+
+const configs = (require('../config/url.json')[process.env.NODE_ENV]);
+
+// OPEN TRACING
 app.register(fastifyJaeger, {
     serviceName: process.env.PROJECT_NAME,
-    agentHost: 'localhost',
-    agentPort: 6831
+    agentHost: configs.jaeger.host,
+    agentPort: configs.jaeger.port
 });
 
 
 // SWAGGER
-const host = process.env.HOST || (require('../config/url.json')[process.env.NODE_ENV]).host;
-const scheme = process.env.SCHEME || (require('../config/url.json')[process.env.NODE_ENV]).scheme;
+const host = process.env.HOST || configs.host;
+const scheme = process.env.SCHEME || configs.scheme;
 const expose = process.env.NODE_ENV === 'production' ? false : true;
 
 app.register(fastswagger, {

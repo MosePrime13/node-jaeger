@@ -21,11 +21,11 @@ RUN npm install --production
 COPY --from=builder /home/node/app/build ./build
 
 COPY --chown=node:node .env .
-COPY --chown=node:node migrate.js .
+# COPY --chown=node:node migrate.js .
 COPY --chown=node:node  /config ./config
 COPY --chown=node:node  /public ./public
 
-RUN npm run migrate
+# RUN npm run migrate
 
 EXPOSE 3030
 CMD [ "node", "build/server.js" ]

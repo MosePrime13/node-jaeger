@@ -2,6 +2,10 @@
     "development_1": {
         "host": "",
         "scheme": "",
+        "jaeger": {
+            "host": "localhost",
+            "port": 6831
+        },
         "services": [
             { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
         ]
