@@ -7,7 +7,8 @@
             "port": 6831
         },
         "services": [
-            { "name": "test", "url": "https://jsonplaceholder.typicode.com" }
+            { "name": "test", "url": "https://jsonplaceholder.typicode.com" },
+            { "name": "development_2", "url": "http://localhost:4010/test" }
         ]
     },
     "production": {

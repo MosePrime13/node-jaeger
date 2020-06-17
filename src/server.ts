@@ -4,13 +4,13 @@ import helmet from 'fastify-helmet';
 import fastifyFormbody from 'fastify-formbody';
 import fastswagger from 'fastify-swagger';
 import fastifyStatic from 'fastify-static';
-import fastifyJaeger from 'fastify-jaeger';
 import path from 'path';
 import { Server, IncomingMessage, ServerResponse } from "http";
 
 dotenv.config({ path: __dirname + '/../.env' });
 
 // import dbConnector from './plugins/dbConnector';
+import jaegerCustomPlugin from './plugins/jaegerCustomPlugin';
 import routes from './routes';
 
 const app: fastify.FastifyInstance<
@@ -34,7 +34,7 @@ app.register(fastifyStatic, {
 const configs = (require('../config/url.json')[process.env.NODE_ENV]);
 
 // OPEN TRACING
-app.register(fastifyJaeger, {
+app.register(jaegerCustomPlugin, {
     serviceName: process.env.PROJECT_NAME,
     agentHost: configs.jaeger.host,
     agentPort: configs.jaeger.port
@@ -71,6 +71,9 @@ app.register(fastswagger, {
         }
     }
 });
+
+// ADD DECORATORS
+// app.decorateRequest()
 
 routes(app);
 
