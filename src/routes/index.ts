@@ -1,9 +1,14 @@
 import fastify from 'fastify';
 import { errorResponses } from '../traits/responses';
 
+// MIDDLEWARE
+import toolingMiddleware from '../middleware/tooling';
+
 import testRoutes from './test';
 
 export default function(app: fastify.FastifyInstance) {
+
+    app.addHook('preHandler', toolingMiddleware);
 
     app.register(testRoutes, { prefix: '/test' })
 

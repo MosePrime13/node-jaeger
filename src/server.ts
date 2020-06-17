@@ -40,7 +40,6 @@ app.register(jaegerCustomPlugin, {
     agentPort: configs.jaeger.port
 });
 
-
 // SWAGGER
 const host = process.env.HOST || configs.host;
 const scheme = process.env.SCHEME || configs.scheme;

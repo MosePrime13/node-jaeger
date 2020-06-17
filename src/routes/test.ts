@@ -2,7 +2,6 @@ import fastify from 'fastify';
 import { RouteSchema } from './../@types/routeschema';
 import { errorResponseObj, successResponseObj } from '../traits/responses';
 import reqmaker from '../traits/reqmaker';
-import { createControllerSpan, finishSpanWithResult } from '../traits/tracer';
 import {Span, Tracer} from 'opentracing';
 
 
@@ -30,46 +29,20 @@ export default function (app: fastify.FastifyInstance, options, done){
 
     app.get('/fetch', {}, async(req, res) => {
        
-        const helloTo = 'Moses';
-
-
-
-        const tracer = req['jaeger']().tracer as Tracer;
-        const span = req['jaeger']().span as Span;
-
-        const ctx = { span, tracer }
-
-        // span.setTag("hello-to", helloTo);
-
-        // const helloToStr = formatString(ctx, helloTo)
-
-        // storeHello(ctx, helloToStr);
-
         let data;
         try{
             data = await reqmaker({
                 service: 'development_2',
                 action: 'reciever',
                 method: 'GET',
-                ctx: ctx
+                ctx: req['ctx']
             });
         }catch(e){
             res.code(400).send(e)
         }
         
-
-        
         res.send(data);
-        
-        // const traceSpan = createControllerSpan(tracer, 'testController', 'doSomething', req.headers );
 
-        // console.log('DO some work here');
-
-        // finishSpanWithResult(traceSpan, 200);
-
-        
-        
-        // res.send(data);
     });
 
     app.post('/create', {}, async(req, res) => {

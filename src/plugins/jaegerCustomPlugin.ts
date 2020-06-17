@@ -12,6 +12,7 @@ function jaegerCustomPlugin (fastify: fastify.FastifyInstance, opts, next) {
     assert(opts.serviceName, 'Jaeger Plugin requires serviceName option')
 
     const { state = {}, initTracerOpts = {}, ...tracerConfig } = opts
+
     const exposeAPI = opts.exposeAPI !== false
     const defaultConfig = {
         sampler: {
